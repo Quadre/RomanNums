@@ -7,7 +7,7 @@ namespace UnitTests
     [TestFixture]
     public class UnitTest
     {
-        private IRoman roman =  new MockRoman();
+        private IRoman roman =  new Roman();
 
         [TestCase(false, "")]
         [TestCase(true, "viii")]
@@ -50,7 +50,7 @@ namespace UnitTests
         [TestCase]        
         public void Max()
         {           
-            string maxM = new string('M', 2147483);            
+            string maxM = new string('M', 99999999);            
             Assert.Throws<OverflowException>(()=> roman.Covnvert(maxM));
         }        
     }

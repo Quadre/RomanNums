@@ -20,11 +20,11 @@ namespace RomanNums
         };
         #endregion      
 
-        public int Covnvert(string str)
+        public int Convert(string str)
         {
-            if (!isCompliant(str))
+            if (!IsCompliant(str))
             {
-                throw new FormatException("Error: Invalid string supplied, string should contain only 'IVXCLMD' chars.");
+                throw new FormatException(RomanErrorCodes.FormatExceptionStr);
             }
 
             int result = 0;
@@ -36,34 +36,34 @@ namespace RomanNums
                 for (int i = str.Length-1; i >= 0; i--)
                 {
                     cur = Map(char.ToUpper(str[i]));
-                    result += (cur >= prev ? cur : -cur);                    
+                    result += cur >= prev ? cur : -cur;
                     prev = cur;
                 }
             }
             catch (Exception ex)
             {
-                throw new OverflowException("Error: Number is either too big or too small.", ex);
+                throw new OverflowException(RomanErrorCodes.OverflowExceptionStr, ex);
             }
 
             return result;
         }
 
-        private int Map(char UpCaseKey)
+        private int Map(char upCaseKey)
         {
-            if (mapping.ContainsKey(UpCaseKey))
+            if (mapping.ContainsKey(upCaseKey))
             {
-                return mapping[UpCaseKey];
+                return mapping[upCaseKey];
             }
             else
             {
-                throw new FormatException("Error:  Invalid string supplied, string should contain only 'IVXLCDM' chars.");
+                throw new FormatException(RomanErrorCodes.FormatExceptionStr);
             }
         }
 
-        public bool isCompliant(string str)
+        public bool IsCompliant(string str)
         {
-            Regex r = new Regex("[^ivxlcdm]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-            return (!r.IsMatch(str) && str.Length >0);
+            Regex r = new Regex("^[ivxlcdm]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            return r.IsMatch(str);
         }
     }
 }

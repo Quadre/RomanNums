@@ -45,7 +45,7 @@ namespace RomanNums
         #endregion 
 
 
-        public int Covnvert(string str)
+        public int Convert(string str)
         {
             if (MapNums.ContainsKey(str))
             {
@@ -60,7 +60,7 @@ namespace RomanNums
             }
         }
 
-        public bool isCompliant(string str)
+        public bool IsCompliant(string str)
         {
             if (MapChecks.ContainsKey(str))
             {

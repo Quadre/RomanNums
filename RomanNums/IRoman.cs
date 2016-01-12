@@ -2,7 +2,7 @@
 {
     public interface IRoman
     {
-        int Covnvert(string str);        
-        bool isCompliant(string str);        
+        int Convert(string str);        
+        bool IsCompliant(string str);        
     }
 }

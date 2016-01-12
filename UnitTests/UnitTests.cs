@@ -5,7 +5,7 @@ using System;
 namespace UnitTests
 {
     [TestFixture]
-    public class UnitTest
+    public class UnitTests
     {
         private IRoman roman =  new Roman();
 
@@ -17,7 +17,7 @@ namespace UnitTests
         [TestCase(true, "MCMLXXXiv")]        
         public void PositiveConverter(bool d, string str)
         {
-            Assert.AreEqual(d, roman.isCompliant(str));
+            Assert.AreEqual(d, roman.IsCompliant(str));
         }
        
         [TestCase(8, "viii")]
@@ -34,7 +34,7 @@ namespace UnitTests
         [TestCase(1944, "MCMXLIV")]
         public void Positive(int d, string str)
         {
-            Assert.AreEqual(d, roman.Covnvert(str));
+            Assert.AreEqual(d, roman.Convert(str));
         }
 
 
@@ -44,14 +44,14 @@ namespace UnitTests
         [TestCase("vii V")]        
         public void Negative(string str)
         {            
-            Assert.Throws <FormatException>(() => roman.Covnvert(str));
+            Assert.Throws <FormatException>(() => roman.Convert(str));
         }
 
         [TestCase]        
         public void Max()
         {           
             string maxM = new string('M', 99999999);            
-            Assert.Throws<OverflowException>(()=> roman.Covnvert(maxM));
+            Assert.Throws<OverflowException>(()=> roman.Convert(maxM));
         }        
     }
 }
